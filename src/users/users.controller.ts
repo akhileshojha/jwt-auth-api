@@ -7,12 +7,23 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('create')
-  async createUser(@Body('username') username: string, @Body('password') password: string): Promise<User> {
+  async createUser(
+    @Body('username') username: string,
+    @Body('password') password: string,
+  ): Promise<User> {
     return this.usersService.create(username, password);
   }
 
   @Get(':username')
-  async findUser(@Param('username') username: string): Promise<User | undefined> {
+  async findUser(
+    @Param('username') username: string,
+  ): Promise<User | undefined> {
     return this.usersService.findOne(username);
+  }
+
+  @Get('list')
+  async getUsers(): Promise<User[]> {
+    console.log('Users:', this.usersService.findAll());
+    return this.usersService.findAll();
   }
 }

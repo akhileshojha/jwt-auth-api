@@ -10,6 +10,9 @@ export class UsersService {
     return this.users.find(user => user.username === username);
   }
 
+  async findAll(): Promise<User[]> {
+    return this.users;
+  }
   async create(username: string, password: string): Promise<User> {
     const user = new User();
     user.userId = this.users.length + 1;

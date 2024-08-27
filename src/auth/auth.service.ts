@@ -25,10 +25,10 @@ export class AuthService {
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
     if (user && (await bcrypt.compare(pass, user.password))) {
-      const { password, ...result } = user;
-      return result;
-    }
-    return null;
+        const { password, ...result } = user;
+        return result;
+      }
+      return null;
   }
   /**
    * Logs in a user and returns a JSON Web Token (JWT) with their username and user ID.
